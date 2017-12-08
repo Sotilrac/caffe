@@ -47,7 +47,7 @@ void VideoDataLayer<Dtype>::DataLayerSetUp(
     }
     cap_.set(CV_CAP_PROP_FRAME_HEIGHT, 480);
     cap_.set(CV_CAP_PROP_FRAME_WIDTH, 640);
-    cap_.set(CV_CAP_PROP_FPS, 10);
+    cap_.set(CV_CAP_PROP_FPS, 1);
     cap_ >> cv_img;
   } else if (video_type_ == VideoDataParameter_VideoType_VIDEO) {
     CHECK(video_data_param.has_video_file()) << "Must provide video file!";
