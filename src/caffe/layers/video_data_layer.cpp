@@ -45,6 +45,8 @@ void VideoDataLayer<Dtype>::DataLayerSetUp(
     if (!cap_.open(device_id)) {
       LOG(FATAL) << "Failed to open webcam: " << device_id;
     }
+    cap_.set(CV_CAP_PROP_FRAME_HEIGHT, 480);
+    cap_.set(CV_CAP_PROP_FRAME_WIDTH, 640);
     cap_ >> cv_img;
   } else if (video_type_ == VideoDataParameter_VideoType_VIDEO) {
     CHECK(video_data_param.has_video_file()) << "Must provide video file!";
