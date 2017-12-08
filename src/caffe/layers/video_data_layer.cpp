@@ -15,9 +15,6 @@
 
 namespace caffe {
 
-cap_.set(CV_CAP_PROP_FRAME_HEIGHT, 480);
-cap_.set(CV_CAP_PROP_FRAME_WIDTH, 640);
-cap_.set(CV_CAP_PROP_FPS, 1);
 
 template <typename Dtype>
 VideoDataLayer<Dtype>::VideoDataLayer(const LayerParameter& param)
@@ -41,6 +38,10 @@ void VideoDataLayer<Dtype>::DataLayerSetUp(
   video_type_ = video_data_param.video_type();
   skip_frames_ = video_data_param.skip_frames();
   CHECK_GE(skip_frames_, 0);
+  
+  cap_.set(CV_CAP_PROP_FRAME_HEIGHT, 480);
+  cap_.set(CV_CAP_PROP_FRAME_WIDTH, 640);
+  cap_.set(CV_CAP_PROP_FPS, 1);
 
   // Read an image, and use it to initialize the top blob.
   cv::Mat cv_img;
