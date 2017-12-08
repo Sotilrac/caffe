@@ -39,8 +39,6 @@ void VideoDataLayer<Dtype>::DataLayerSetUp(
   skip_frames_ = video_data_param.skip_frames();
   CHECK_GE(skip_frames_, 0);
   
-  cap_.set(CV_CAP_PROP_FRAME_HEIGHT, 480);
-  cap_.set(CV_CAP_PROP_FRAME_WIDTH, 640);
 
   // Read an image, and use it to initialize the top blob.
   cv::Mat cv_img;
@@ -62,6 +60,8 @@ void VideoDataLayer<Dtype>::DataLayerSetUp(
     cap_ >> cv_img;
     // Set index back to the first frame.
     cap_.set(CV_CAP_PROP_POS_FRAMES, 0);
+    cap_.set(CV_CAP_PROP_FRAME_HEIGHT, 480);
+    cap_.set(CV_CAP_PROP_FRAME_WIDTH, 640);
   } else {
     LOG(FATAL) << "Unknow video type!";
   }
@@ -145,12 +145,7 @@ void VideoDataLayer<Dtype>::load_batch(Batch<Dtype>* batch) {
     }
     CHECK(cv_img.data) << "Could not load image!";
     read_time += timer.MicroSeconds();
-    // timer.Start();
-    // // Apply transformations (mirror, crop...) to the image
-    // int offset = batch->data_.offset(item_id);
-    // this->transformed_data_.set_cpu_data(top_data + offset);
-    // this->data_transformer_->Transform(cv_img, &(this->transformed_data_));
-    // trans_time += timer.MicroSeconds();
+    
     if (this->output_labels_) {
       top_label[item_id] = 0;
     }
