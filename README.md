@@ -1,4 +1,4 @@
-# SSD: Single Shot MultiBox Detector
+# SSD: Single Shot MultiBox Detector for Nvidia TX1
 
 [![Build Status](https://travis-ci.org/weiliu89/caffe.svg?branch=ssd)](https://travis-ci.org/weiliu89/caffe)
 [![License](https://img.shields.io/badge/license-BSD-blue.svg)](LICENSE)
@@ -47,9 +47,9 @@ Please cite SSD in your publications if it helps your research:
 ### Installation
 1. Get the code. We will call the directory that you cloned Caffe into `$CAFFE_ROOT`
   ```Shell
-  git clone https://github.com/weiliu89/caffe.git
-  cd caffe
-  git checkout ssd
+  git clone git@github.com:Sotilrac/caffe.git caffe-ssd
+  cd caffe-ssd
+  git checkout ssd_tx1
   ```
 
 2. Build the code. Please follow [Caffe instruction](http://caffe.berkeleyvision.org/installation.html) to install all necessary packages and build it.
