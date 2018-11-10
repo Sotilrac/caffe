@@ -47,19 +47,24 @@ Please cite SSD in your publications if it helps your research:
 ### Installation
 1. Get the code. We will call the directory that you cloned Caffe into `$CAFFE_ROOT`
   ```Shell
-  git clone https://github.com/weiliu89/caffe.git
-  cd caffe
-  git checkout ssd
+  git clone -b ssd git@github.com:Sotilrac/caffe.git --depth=1
+  cd caffe && export CAFFE_ROOT=$(pwd)
   ```
 
 2. Build the code. Please follow [Caffe instruction](http://caffe.berkeleyvision.org/installation.html) to install all necessary packages and build it.
   ```Shell
+  # For Ubuntu 16.04 + Nvidia GPU w/ Cuda 8
+  sudo apt install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler libopenblas-dev -y
+  sudo apt install --no-install-recommends libboost-all-dev
+  sudo apt install python-matplotlib python-numpy python-pil python-scipy build-essential cython python-skimage -y
+  sudo pip install protobuf
   # Modify Makefile.config according to your Caffe installation.
   cp Makefile.config.example Makefile.config
-  make -j8
+  make -j8 -Wno-deprecated-gpu-target
   # Make sure to include $CAFFE_ROOT/python to your PYTHONPATH.
+  export PYTHONPATH="${PYTHONPATH}:${CAFFE_ROOT}/python"
   make py
-  make test -j8
+  make test -j8 -Wno-deprecated-gpu-target
   # (Optional)
   make runtest -j8
   ```
@@ -106,6 +111,10 @@ Please cite SSD in your publications if it helps your research:
   python examples/ssd/ssd_pascal.py
   ```
   If you don't have time to train your model, you can download a pre-trained model at [here](https://drive.google.com/open?id=0BzKzrI_SkD1_WVVTSmQxU0dVRzA).
+```Shell
+wget --no-check-certificate 'https://drive.google.com/uc?export=download&id=0BzKzrI_SkD1_WVVTSmQxU0dVRzA' -O models_VGGNet_VOC0712_SSD_300x300.tar.gz
+tar -xvf models_VGGNet_VOC0712_SSD_300x300.tar.gz
+```
 
 2. Evaluate the most recent snapshot.
   ```Shell
