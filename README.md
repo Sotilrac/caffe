@@ -60,6 +60,8 @@ Please cite SSD in your publications if it helps your research:
   sudo pip install protobuf
   # Modify Makefile.config according to your Caffe installation.
   cp Makefile.config.example Makefile.config
+  mkdir build && cd build
+  cmake -DCMAKE_CXX_FLAGS="-std=c++11" -DCMAKE_INSTALL_PREFIX=/usr ..
   make -j8 -Wno-deprecated-gpu-target
   # Make sure to include $CAFFE_ROOT/python to your PYTHONPATH.
   export PYTHONPATH="${PYTHONPATH}:${CAFFE_ROOT}/python"
@@ -67,6 +69,7 @@ Please cite SSD in your publications if it helps your research:
   make test -j8 -Wno-deprecated-gpu-target
   # (Optional)
   make runtest -j8
+  sudo make install
   ```
 
 ### Preparation
