@@ -66,7 +66,7 @@ Please cite SSD in your publications if it helps your research:
   # Make sure to include $CAFFE_ROOT/python to your PYTHONPATH.
   export PYTHONPATH="${PYTHONPATH}:${CAFFE_ROOT}/python"
   make py
-  make test -j8 -Wno-deprecated-gpu-target
+  make test -j8 -Wno-deprecated-gpu-targets
   # (Optional)
   make runtest -j8
   sudo make install
